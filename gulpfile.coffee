@@ -5,6 +5,7 @@ flatten = require 'gulp-flatten'
 uglify = require 'gulp-uglify'
 cond   = require 'gulp-if'
 gutil = require 'gulp-util'
+runSequence = require 'run-sequence'
 
 bases =
   dist: "dist/"
@@ -23,3 +24,6 @@ gulp.task 'bower', ->
     .pipe cond isRelease, uglify({preserveComments:'some'})
     .pipe flatten()
     .pipe (gulp.dest 'lib')
+
+gulp.task 'default', ->
+  runSequence 'clean', 'bower', 'build'
