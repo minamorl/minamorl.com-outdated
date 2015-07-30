@@ -28,5 +28,8 @@ gulp.task 'sass', ->
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./css'))
 
+gulp.task 'watch', ->
+  gulp.watch ['sass/**/*.scss'], ['sass']
+
 gulp.task 'default', ->
-  runSequence 'clean', 'bower', 'build'
+  runSequence 'clean', 'bower', 'sass', 'build'
