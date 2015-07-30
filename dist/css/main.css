@@ -23,6 +23,23 @@ header {
     border: none;
     text-decoration: none; }
 
+article h1 {
+  font-size: 28px;
+  margin-bottom: 0px;
+  color: #3e68ad; }
+
+article time {
+  display: block;
+  color: #acacac;
+  border-left: 2px solid #cccccc;
+  font-size: 12px;
+  padding-left: 14px;
+  margin-left: 2px;
+  margin-bottom: 20px; }
+
+article p {
+  margin: 0 0 10px 0; }
+
 .content {
   max-width: 1024px;
   text-align: left;
@@ -30,11 +47,8 @@ header {
   margin-right: auto; }
 
 footer {
-  margin-top: 80px; }
+  margin-top: 120px; }
   footer h2 {
     margin-bottom: 10px; }
   footer p {
     margin: 0; }
-
-p {
-  text-wrap: normal; }
