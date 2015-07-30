@@ -66,7 +66,7 @@ gulp.task 'markdown', ->
     .pipe gulp.dest('./dist/articles')
 
 gulp.task 'update-index', ->
-  dir = fs.readdir 'articles', (err, filenames)->
+  dir = fs.readdir 'dist/articles', (err, filenames)->
     gulp.src 'templates/index.jade'
       .pipe jade
         locals:
