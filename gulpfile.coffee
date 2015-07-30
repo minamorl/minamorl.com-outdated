@@ -25,8 +25,7 @@ gulp.task 'clean', ->
 
 gulp.task 'build', ->
   gulp.src(['lib/**/*', '*.html', 'css/**/*', 'js/**/*'], {base: "."})
-    .pipe (gulp.dest 'dist')
-
+    .pipe (gulp.dest 'dist') 
 gulp.task 'bower', ->
   bower()
     .pipe cond isRelease, uglify({preserveComments:'some'})
@@ -69,7 +68,10 @@ gulp.task 'markdown', ->
 gulp.task 'update-index', ->
   dir = fs.readdir 'dist/articles', (err, filenames)->
     newest = filenames[0].replace('.html', '.md')
-    fs.readFile path.join("articles/",  newest), 'utf8', (err,data) ->
+    newest = newest.split("-")
+    newest = newest[newest.length-1]
+    newest = path.resolve( __dirname, "articles",  newest)
+    fs.readFile newest, 'utf8', (err,data) ->
       gulp.src 'templates/index.jade'
         .pipe jade
           locals:
