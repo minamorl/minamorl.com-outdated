@@ -13,15 +13,6 @@ html(lang="ja")
         a(class="logo",href="/") minamorl.com
     .content
       article
-
-      footer
-        .articles
-          ul
-            for filename in dir
-              li= filename
-
-        .bio
-          h2 bio
-          p name: minamorl
-          p twitter: 
-            a(href="https://twitter.com/minamorl/") @minamorl
+        h1= title
+        time= timestamp
+        div!= contents

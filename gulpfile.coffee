@@ -11,6 +11,11 @@ merge       = require 'merge'
 frontMatter = require 'gulp-front-matter'
 layout      = require 'gulp-layout'
 markdown    = require 'gulp-markdown'
+jade        = require 'gulp-jade'
+fs          = require 'fs'
+rename      = require 'gulp-rename'
+tap         = require 'gulp-tap'
+path = require 'path'
 
 isRelease = gutil.env.release || false
 
@@ -41,10 +46,29 @@ gulp.task 'default', ->
 
 gulp.task 'markdown', ->
   defaultLayout =
-    layout: "templates/index.jade"
+    layout: "templates/article.jade"
+  merged = {}
   gulp.src 'articles/**/*.md'
     .pipe frontMatter()
     .pipe markdown()
     .pipe layout ((file) ->
-      merge(defaultLayout, file.frontMatter))
-    .pipe(gulp.dest('./dist/articles'))
+      merge(defaultLayout, file.frontMatter)
+    )
+    .pipe tap((file) ->
+      console.log file.path
+      extname = path.extname(path)
+      name =
+        dirname:  path.dirname(file.path),
+        basename: path.basename(file.path, extname),
+      file.path = path.join name.dirname, file.frontMatter.timestamp + "-" + name.basename
+      console.log file.path
+    )
+    .pipe gulp.dest('./dist/articles')
+
+gulp.task 'update-index', ->
+  dir = fs.readdir 'articles', (err, filenames)->
+    gulp.src 'templates/index.jade'
+      .pipe jade
+        locals:
+          dir: filenames
+      .pipe gulp.dest('./dist')
