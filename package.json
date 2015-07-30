@@ -19,6 +19,7 @@
     "gulp-bower": "0.0.10",
     "gulp-flatten": "^0.1.1",
     "gulp-if": "^1.2.5",
+    "gulp-sass": "^2.0.4",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.6",
     "run-sequence": "^1.1.2"
