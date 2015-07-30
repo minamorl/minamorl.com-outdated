@@ -7,6 +7,10 @@ cond        = require 'gulp-if'
 gutil       = require 'gulp-util'
 sass        = require 'gulp-sass'
 runSequence = require 'run-sequence'
+merge       = require 'merge'
+frontMatter = require 'gulp-front-matter'
+layout      = require 'gulp-layout'
+markdown    = require 'gulp-markdown'
 
 isRelease = gutil.env.release || false
 
@@ -33,3 +37,14 @@ gulp.task 'watch', ->
 
 gulp.task 'default', ->
   runSequence 'clean', 'bower', 'sass', 'build'
+
+
+gulp.task 'markdown', ->
+  defaultLayout =
+    layout: "templates/index.jade"
+  gulp.src 'articles/**/*.md'
+    .pipe frontMatter()
+    .pipe markdown()
+    .pipe layout ((file) ->
+      merge(defaultLayout, file.frontMatter))
+    .pipe(gulp.dest('./dist/articles'))
