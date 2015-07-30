@@ -11,9 +11,12 @@ html(lang="ja")
     header
       .content
         a(class="logo",href="/") minamorl.com
+
     .content
       article
-        |!{newest}
+        h1= title
+        time= timestamp
+        div!= contents
 
       footer
         .articles

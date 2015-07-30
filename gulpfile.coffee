@@ -66,15 +66,21 @@ gulp.task 'markdown', ->
     .pipe gulp.dest('./dist/articles')
 
 gulp.task 'update-index', ->
-  dir = fs.readdir 'dist/articles', (err, filenames)->
+  defaultLayout =
+    layout: "templates/index.jade"
+  fs.readdir 'dist/articles', (err, filenames) ->
+
     newest = filenames[0].replace('.html', '.md')
     newest = newest.split("-")
     newest = newest[newest.length-1]
-    newest = path.resolve( __dirname, "articles",  newest)
-    fs.readFile newest, 'utf8', (err,data) ->
-      gulp.src 'templates/index.jade'
-        .pipe jade
-          locals:
-            newest: marked(data)
-            dir: filenames
-        .pipe gulp.dest('./dist')
+    newest = path.resolve(__dirname, "articles",  newest)
+
+    gulp.src newest
+      .pipe frontMatter()
+      .pipe markdown()
+      .pipe layout ((file) ->
+        merge(defaultLayout, file.frontMatter, {dir: filenames}))
+
+      .pipe rename (path) ->
+        path.basename = "index"
+      .pipe gulp.dest('./dist')
