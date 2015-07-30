@@ -41,7 +41,7 @@ gulp.task 'watch', ->
   gulp.watch ['sass/**/*.scss'], ['sass']
 
 gulp.task 'default', ->
-  runSequence 'clean', 'bower', 'sass', 'build'
+  runSequence 'clean', 'bower', 'sass', 'markdown', 'update-index', 'build'
 
 
 gulp.task 'markdown', ->
@@ -80,7 +80,6 @@ gulp.task 'update-index', ->
       .pipe markdown()
       .pipe layout ((file) ->
         merge(defaultLayout, file.frontMatter, {dir: filenames}))
-
       .pipe rename (path) ->
         path.basename = "index"
       .pipe gulp.dest('./dist')
