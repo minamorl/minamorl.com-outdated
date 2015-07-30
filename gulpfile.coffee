@@ -15,7 +15,7 @@ jade        = require 'gulp-jade'
 fs          = require 'fs'
 rename      = require 'gulp-rename'
 tap         = require 'gulp-tap'
-path = require 'path'
+path        = require 'path'
 marked      = require 'marked'
 
 isRelease = gutil.env.release || false
@@ -68,8 +68,8 @@ gulp.task 'markdown', ->
 
 gulp.task 'update-index', ->
   dir = fs.readdir 'dist/articles', (err, filenames)->
-    newest = filenames[0]
-    fs.readFile path.join("dist/articles/",  newest), 'utf8', (err,data) ->
+    newest = filenames[0].replace('.html', '.md')
+    fs.readFile path.join("articles/",  newest), 'utf8', (err,data) ->
       gulp.src 'templates/index.jade'
         .pipe jade
           locals:
