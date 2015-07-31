@@ -5,29 +5,18 @@
 </code></pre><p>と入力しただけで<code>/articles/**/*.md</code>ファイルから、markdownをコンパイルした状態で自動的にJadeテンプレートを適応し、<code>/dist/articles/**/*.html</code>ファイルを生成してほしい。</p>
 <h2 id="-">このサイトの実装</h2>
 <pre><code class="lang-coffeescript">gulp        = require &#39;gulp&#39;
-del         = require &#39;del&#39;
-bower       = require &#39;gulp-bower&#39;
-flatten     = require &#39;gulp-flatten&#39;
-uglify      = require &#39;gulp-uglify&#39;
-cond        = require &#39;gulp-if&#39;
-gutil       = require &#39;gulp-util&#39;
-sass        = require &#39;gulp-sass&#39;
-runSequence = require &#39;run-sequence&#39;
-merge       = require &#39;merge&#39;
 frontMatter = require &#39;gulp-front-matter&#39;
 layout      = require &#39;gulp-layout&#39;
 markdown    = require &#39;gulp-markdown&#39;
 jade        = require &#39;gulp-jade&#39;
-fs          = require &#39;fs&#39;
-rename      = require &#39;gulp-rename&#39;
 tap         = require &#39;gulp-tap&#39;
 path        = require &#39;path&#39;
-marked      = require &#39;marked&#39;
+
+// ...
 
 gulp.task &#39;markdown&#39;, -&gt;
   defaultLayout =
     layout: &quot;templates/article.jade&quot;
-  merged = {}
   gulp.src &#39;articles/**/*.md&#39;
     .pipe frontMatter()
     .pipe markdown()
@@ -35,14 +24,16 @@ gulp.task &#39;markdown&#39;, -&gt;
       merge(defaultLayout, file.frontMatter)
     )
     .pipe tap((file) -&gt;
-      console.log file.path
       extname = path.extname(path)
       name =
         dirname:  path.dirname(file.path),
         basename: path.basename(file.path, extname),
       file.path = path.join name.dirname, file.frontMatter.timestamp + &quot;-&quot; + name.basename
-      console.log file.path
     )
     .pipe gulp.dest(&#39;./dist/articles&#39;)
 </code></pre>
+<p>gulp-front-matterはmarkdownファイルからYAML front matterをparseしてfile.frontMatterに格納して返してくれる。あとはmarkdownに処理させてlayoutからJadeをぶん投げて保存するだけ。</p>
+<p>tap内の処理はrename時にfrontMatterの情報を使いたかったからで、普通はgulp-renameでも使えばいいと思います。</p>
+<h2 id="-">結論</h2>
+<p>普通にJekyllとかそのへんのジェネレータ使ったほうが幸せになれる。</p>
 </div></article></div></body></html>

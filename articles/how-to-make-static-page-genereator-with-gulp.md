@@ -19,29 +19,18 @@ gulp markdown
 
 ```coffeescript
 gulp        = require 'gulp'
-del         = require 'del'
-bower       = require 'gulp-bower'
-flatten     = require 'gulp-flatten'
-uglify      = require 'gulp-uglify'
-cond        = require 'gulp-if'
-gutil       = require 'gulp-util'
-sass        = require 'gulp-sass'
-runSequence = require 'run-sequence'
-merge       = require 'merge'
 frontMatter = require 'gulp-front-matter'
 layout      = require 'gulp-layout'
 markdown    = require 'gulp-markdown'
 jade        = require 'gulp-jade'
-fs          = require 'fs'
-rename      = require 'gulp-rename'
 tap         = require 'gulp-tap'
 path        = require 'path'
-marked      = require 'marked'
+
+// ...
 
 gulp.task 'markdown', ->
   defaultLayout =
     layout: "templates/article.jade"
-  merged = {}
   gulp.src 'articles/**/*.md'
     .pipe frontMatter()
     .pipe markdown()
@@ -49,13 +38,19 @@ gulp.task 'markdown', ->
       merge(defaultLayout, file.frontMatter)
     )
     .pipe tap((file) ->
-      console.log file.path
       extname = path.extname(path)
       name =
         dirname:  path.dirname(file.path),
         basename: path.basename(file.path, extname),
       file.path = path.join name.dirname, file.frontMatter.timestamp + "-" + name.basename
-      console.log file.path
     )
     .pipe gulp.dest('./dist/articles')
 ```
+
+gulp-front-matterはmarkdownファイルからYAML front matterをparseしてfile.frontMatterに格納して返してくれる。あとはmarkdownに処理させてlayoutからJadeをぶん投げて保存するだけ。
+
+tap内の処理はrename時にfrontMatterの情報を使いたかったからで、普通はgulp-renameでも使えばいいと思います。
+
+## 結論
+
+普通にJekyllとかそのへんのジェネレータ使ったほうが幸せになれる。
