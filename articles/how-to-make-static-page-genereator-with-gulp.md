@@ -13,4 +13,4 @@ staticなWebサイトジェネレータを探していたが何となく既存�
 gulp markdown
 ```
 
-と入力しただけで/articles/**/*.mdファイルを自動的にJadeテンプレートを適応した状態で/dist/articles/**/*.htmlファイルを生成する。
+と入力しただけで`/articles/**/*.md`ファイルから、markdownをコンパイルした状態で自動的にJadeテンプレートを適応し、`/dist/articles/**/*.html`ファイルを生成する。
