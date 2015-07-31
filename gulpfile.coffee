@@ -25,7 +25,7 @@ gulp.task 'clean', ->
 
 gulp.task 'build', ->
   gulp.src(['lib/**/*', '*.html', 'css/**/*', 'js/**/*'], {base: "."})
-    .pipe (gulp.dest 'dist') 
+    .pipe (gulp.dest 'dist')
 gulp.task 'bower', ->
   bower()
     .pipe cond isRelease, uglify({preserveComments:'some'})
@@ -70,10 +70,20 @@ gulp.task 'update-index', ->
     layout: "templates/index.jade"
   fs.readdir 'dist/articles', (err, filenames) ->
 
+    filenames.sort (a, b) ->
+      if a < b
+        return 1
+      if a > b
+        return -1
+      return 0
+
+
     newest = filenames[0].replace('.html', '.md')
-    newest = newest.split("-")
+    newest = newest.split("+0900-")
     newest = newest[newest.length-1]
     newest = path.resolve(__dirname, "articles",  newest)
+
+    console.log newest
 
     gulp.src newest
       .pipe frontMatter()
