@@ -23,18 +23,13 @@ html(lang="ja")
 
       footer
         .articles
-          h2 articles
+          h2 Recent Articles
           ul
             for filename in dir
               li 
                 a(href="articles/"+filename)= filename
-        .log
-          h2 log
-          p デザインの調整 - <time>2015-07-30 17:42:24<time>
-          p viewportの指定とか - <time>2015-07-27 22:01:10</time>
-          p 適当にドメインとってサーバ建ててCNAMEとか設定してnginx入れてpost-receive hook使ってgit pushしたら自動的に中身を更新するようにした。 - <time>2015-07-27 19:18:10</time>
         .bio
-          h2 bio
+          h2 Bio
           p name: minamorl
           p twitter: 
             a(href="https://twitter.com/minamorl/") @minamorl
