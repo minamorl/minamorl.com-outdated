@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="initial-scale=1.0"><link rel="stylesheet" href="/lib/normalize.css" type="text/css"><link rel="stylesheet" href="/css/main.css" type="text/css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/default.min.css" type="text/css"><title>git-addをgulp-gitを用いて自動化する - minamorl.com</title><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js" charset="utf-8"></script><script>hljs.initHighlightingOnLoad();</script></head><body><header><div class="content"><a href="/" class="logo">minamorl.com</a></div></header><div class="content"><article><h1>git-addをgulp-gitを用いて自動化する</h1><time></time><div><h2 id="-">モチベーション</h2>
+<p>このサイトはgulpを用いてmarkdownファイルからすべて静的ファイルが自動生成されているが、articles以下のファイルを更新したあとgulpコマンドを実行したとき、いちいち手動で<code>git add articles</code>などとやるのは煩わしい。</p>
+<p>したがって自動でarticles以下のファイルとdist以下のファイルをコミット対象に追加してほしい。</p>
+<h2 id="-">サンプル</h2>
+<pre><code class="lang-sh">sudo npm install gulp-git --save-dev
+</code></pre>
+<p>とした後、gulpfile.coffeeに次のように追加する。</p>
+<pre><code class="lang-coffeescript">git = require &#39;gulp-git&#39;
+
+gulp.task &#39;git-add&#39;, -&gt;
+  gulp.src [&#39;./articles/**/*.md&#39;, &#39;./dist/**/*&#39;]
+    .pipe git.add()
+</code></pre>
+<p>このようにシンプルなタスクを生成しgulpのデフォルトタスクに追加してやると想定通りの挙動が得られる。</p>
+</div></article><div id="disqus_thread"></div><script type="text/javascript">var disqus_shortname = 'minamorl';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script></div></body></html>
