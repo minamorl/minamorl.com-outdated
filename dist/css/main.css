@@ -4,7 +4,7 @@ body {
   font-family: Avenir , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif; }
 
 header {
-  padding: 20px 0 20px 0;
+  padding: 10px 0 20px 0;
   border-bottom: 1px solid #cccccc;
   width: 100%;
   text-align: center; }
