@@ -96,9 +96,9 @@ gulp.task 'update-index', ->
       .pipe gulp.dest('./dist')
 
 gulp.task 'deploy', ->
-  runSequence 'git:add'
+  runSequence 'git-add'
 
-gulp.task 'git:add', ->
+gulp.task 'git-add', ->
   gulp.src ['./articles/**/*.md', './dist/**/*']
     .pipe git.add()
   
