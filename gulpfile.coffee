@@ -17,6 +17,7 @@ rename      = require 'gulp-rename'
 tap         = require 'gulp-tap'
 path        = require 'path'
 marked      = require 'marked'
+git         = require 'gulp-git'
 
 isRelease = gutil.env.release || false
 
@@ -41,7 +42,7 @@ gulp.task 'watch', ->
   gulp.watch ['sass/**/*.scss'], ['sass']
 
 gulp.task 'default', ->
-  runSequence 'clean', 'bower', 'sass', 'markdown', 'update-index', 'build'
+  runSequence 'clean', 'bower', 'sass', 'markdown', 'update-index', 'build', 'deploy'
 
 
 gulp.task 'markdown', ->
@@ -93,3 +94,11 @@ gulp.task 'update-index', ->
       .pipe rename (path) ->
         path.basename = "index"
       .pipe gulp.dest('./dist')
+
+gulp.task 'deploy', ->
+  runSequence 'git:add'
+
+gulp.task 'git:add', ->
+  gulp.src ['./articles/**/*.md', './dist/**/*']
+    .pipe git.add()
+  
