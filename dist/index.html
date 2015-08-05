@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="initial-scale=1.0"><link rel="stylesheet" href="/lib/normalize.css" type="text/css"><link rel="stylesheet" href="/css/main.css" type="text/css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/default.min.css" type="text/css"><title>minamorl.com</title><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js" charset="utf-8"></script><script>hljs.initHighlightingOnLoad();</script></head><body><header><div class="content"><a href="/" class="logo">minamorl.com</a></div></header><div class="content"><article><h1>git-addをgulp-gitを用いて自動化する</h1><time>2015-08-06T01:02:34+0900</time><div><h2 id="-">モチベーション</h2>
+<p>このサイトはgulpを用いてmarkdownファイルからすべて静的ファイルが自動生成されているが、articles以下のファイルを更新したあとgulpコマンドを実行したとき、いちいち手動で<code>git add articles</code>などとやるのは煩わしい。</p>
+<p>したがって自動でarticles以下のファイルとdist以下のファイルをコミット対象に追加してほしい。</p>
+<h2 id="-">サンプル</h2>
+<pre><code class="lang-sh">sudo npm install gulp-git --save-dev
+</code></pre>
+<p>とした後、gulpfile.coffeeに次のように追加する。</p>
+<pre><code class="lang-coffeescript">git = require &#39;gulp-git&#39;
+
+gulp.task &#39;git-add&#39;, -&gt;
+  gulp.src [&#39;./articles/**/*.md&#39;, &#39;./dist/**/*&#39;]
+    .pipe git.add()
+</code></pre>
+<p>このようにシンプルなタスクを生成しgulpのデフォルトタスクに追加してやると想定通りの挙動が得られる。</p>
+</div></article><footer><div class="articles"><h2>Recent Articles</h2><ul><li> <a href="articles/2015-08-06T01:02:34+0900-automate-git-add-with-gulp-git.html">2015-08-06T01:02:34+0900-automate-git-add-with-gulp-git.html</a></li><li> <a href="articles/2015-08-01T21:20:40+0900-dealing-with-sleep-problems.html">2015-08-01T21:20:40+0900-dealing-with-sleep-problems.html</a></li><li> <a href="articles/2015-08-01T02:10:32+0900-tamron-18-200-lens.html">2015-08-01T02:10:32+0900-tamron-18-200-lens.html</a></li><li> <a href="articles/2015-07-31T11:22:58+0900-how-to-make-static-page-genereator-with-gulp.html">2015-07-31T11:22:58+0900-how-to-make-static-page-genereator-with-gulp.html</a></li><li> <a href="articles/2015-07-31T03:27:03+0900-testpage.html">2015-07-31T03:27:03+0900-testpage.html</a></li></ul></div><div class="bio"><h2>Bio</h2><p>name: minamorl</p><p>twitter: <a href="https://twitter.com/minamorl/">@minamorl</a></p><ul><li>ドール(azone)</li><li>熱帯魚の飼育・多肉植物栽培などを中心に生活している</li><li>医薬品検索エンジンChlorixの開発に携わった</li></ul></div></footer></div></body></html>
