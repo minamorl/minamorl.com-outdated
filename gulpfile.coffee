@@ -36,7 +36,7 @@ gulp.task 'bower', ->
 gulp.task 'sass', ->
   gulp.src('./sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./css'))
+    .pipe(gulp.dest('./dist/css'))
 
 gulp.task 'watch', ->
   gulp.watch ['sass/**/*.scss'], ['sass']
