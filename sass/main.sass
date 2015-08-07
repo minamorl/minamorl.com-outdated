@@ -2,6 +2,7 @@
 
 $font-family: Avenir , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif
 $article-main-font-size: 16px
+$logo-color: #6F6F6F
 
 body 
   font-family: $font-family
@@ -14,19 +15,15 @@ header
   a.logo 
     font-size: 20px
     font-family: "Abril Fatface", serif
-    color: #000000
+    color: $logo-color
     border: none
     text-decoration: none
 
-  a.logo:hover 
-    color: #000000
-    border: none
-    text-decoration: none
+    &:hover 
+      text-decoration: none
 
-  a.logo:visited 
-    color: #000000
-    border: none
-    text-decoration: none
+    &:visited 
+      text-decoration: none
 
 
 article 
