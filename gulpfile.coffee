@@ -18,6 +18,7 @@ tap         = require 'gulp-tap'
 path        = require 'path'
 marked      = require 'marked'
 git         = require 'gulp-git'
+htmlmin     = require 'gulp-htmlmin'
 
 gulp.task 'clean', ->
   del ['.tmp', 'dist']
@@ -25,6 +26,11 @@ gulp.task 'clean', ->
 gulp.task 'build', ->
   gulp.src(['lib/**/*', '*.html', 'css/**/*', 'js/**/*'], {base: "."})
     .pipe (gulp.dest 'dist')
+
+gulp.task 'compress', ->
+  gulp.src 'dist/**/*.html', {base: "."}
+    .pipe htmlmin({collapseWhitespace: true})
+    .pipe (gulp.dest '.')
 
 gulp.task 'bower', ->
   bower()
@@ -40,7 +46,7 @@ gulp.task 'watch', ->
   gulp.watch ['sass/**/*.scss'], ['sass']
 
 gulp.task 'default', ->
-  runSequence 'clean', 'bower', 'sass', 'markdown', 'update-index', 'build', 'deploy'
+  runSequence 'clean', 'bower', 'sass', 'markdown', 'update-index', 'build', 'compress', 'deploy'
 
 gulp.task 'markdown', ->
   defaultLayout =
@@ -96,5 +102,3 @@ gulp.task 'deploy', ->
 
 gulp.task 'git-add', ->
   gulp.src ['./articles/**/*.md', './dist/**/*']
-    .pipe git.add()
-  
