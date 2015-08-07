@@ -1,38 +1,23 @@
 {
-  "name": "jquery",
-  "version": "2.1.4",
-  "main": "dist/jquery.js",
-  "license": "MIT",
+  "name": "normalize-css",
+  "version": "3.0.3",
+  "main": "normalize.css",
+  "author": "Nicolas Gallagher",
   "ignore": [
-    "**/.*",
-    "build",
-    "dist/cdn",
-    "speed",
-    "test",
-    "*.md",
-    "AUTHORS.txt",
-    "Gruntfile.js",
-    "package.json"
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "component.json",
+    "package.json",
+    "test.html"
   ],
-  "devDependencies": {
-    "sizzle": "2.1.1-jquery.2.1.2",
-    "requirejs": "2.1.10",
-    "qunit": "1.14.0",
-    "sinon": "1.8.1"
-  },
-  "keywords": [
-    "jquery",
-    "javascript",
-    "library"
-  ],
-  "homepage": "https://github.com/jquery/jquery",
-  "_release": "2.1.4",
+  "homepage": "https://github.com/necolas/normalize.css",
+  "_release": "3.0.3",
   "_resolution": {
     "type": "version",
-    "tag": "2.1.4",
-    "commit": "7751e69b615c6eca6f783a81e292a55725af6b85"
+    "tag": "3.0.3",
+    "commit": "7d0ebab2ffdf2c2046e2b812456f3681f92b5f32"
   },
-  "_source": "git://github.com/jquery/jquery.git",
-  "_target": "~2.1.4",
-  "_originalSource": "jQuery"
+  "_source": "git://github.com/necolas/normalize.css.git",
+  "_target": "~3.0.3",
+  "_originalSource": "normalize.css"
 }

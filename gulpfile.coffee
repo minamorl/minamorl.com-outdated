@@ -19,17 +19,15 @@ path        = require 'path'
 marked      = require 'marked'
 git         = require 'gulp-git'
 
-isRelease = gutil.env.release || false
-
 gulp.task 'clean', ->
   del ['.tmp', 'dist']
 
 gulp.task 'build', ->
   gulp.src(['lib/**/*', '*.html', 'css/**/*', 'js/**/*'], {base: "."})
     .pipe (gulp.dest 'dist')
+
 gulp.task 'bower', ->
   bower()
-    .pipe cond isRelease, uglify({preserveComments:'some'})
     .pipe flatten()
     .pipe (gulp.dest 'lib')
 
@@ -43,7 +41,6 @@ gulp.task 'watch', ->
 
 gulp.task 'default', ->
   runSequence 'clean', 'bower', 'sass', 'markdown', 'update-index', 'build', 'deploy'
-
 
 gulp.task 'markdown', ->
   defaultLayout =
@@ -77,7 +74,6 @@ gulp.task 'update-index', ->
       if a > b
         return -1
       return 0
-
 
     newest = filenames[0].replace('.html', '.md')
     newest = newest.split("+0900-")

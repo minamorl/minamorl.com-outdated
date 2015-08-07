@@ -1,7 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Abril+Fatface)
-body 
-  font-family:Avenir , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif
 
+$font-family: Avenir , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif
+$article-main-font-size: 16px
+
+body 
+  font-family: $font-family
 
 header 
   padding: 10px 0
@@ -14,25 +17,24 @@ header
     color: #000000
     border: none
     text-decoration: none
-  
+
   a.logo:hover 
     color: #000000
     border: none
     text-decoration: none
-  
+
   a.logo:visited 
     color: #000000
     border: none
     text-decoration: none
-  
 
-$main-font-size: 16px
+
 article 
   h1 
     font-size: 28px
     margin-bottom: 0px
     color: rgb(62, 104, 173)
-  
+
   time 
     display: block
     color: #acacac
@@ -41,13 +43,13 @@ article
     padding-left: 14px
     margin-left: 2px
     margin-bottom: 20px
-  
+
   p 
 
     margin: 0 0 10px 0
-    font-size: $main-font-size
-    line-height: $main-font-size + 2px
-  
+    font-size: $article-main-font-size
+    line-height: $article-main-font-size + 4px
+
 
 
 
@@ -62,10 +64,10 @@ footer
   margin-top: 60px
   h2 
     margin-bottom: 10px
-  
+
   p 
     margin: 0
-  
+
 
 
 pre 
@@ -77,5 +79,5 @@ pre
     line-height: 1.5
     border: 1px solid #CCC
     padding: 10px
-  
+
 
