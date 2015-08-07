@@ -34,7 +34,7 @@ gulp.task 'bower', ->
     .pipe (gulp.dest 'lib')
 
 gulp.task 'sass', ->
-  gulp.src('./sass/**/*.scss')
+  gulp.src('./sass/**/*.sass')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./dist/css'))
 

@@ -39,7 +39,8 @@ article time {
 
 article p {
   margin: 0 0 10px 0;
-  line-height: 1.5; }
+  font-size: 16px;
+  line-height: 18px; }
 
 .content {
   max-width: 1024px;
