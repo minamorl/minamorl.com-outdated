@@ -19,6 +19,7 @@ path        = require 'path'
 marked      = require 'marked'
 git         = require 'gulp-git'
 htmlmin     = require 'gulp-htmlmin'
+cssmin      = require 'gulp-minify-css'
 
 gulp.task 'clean', ->
   del ['.tmp', 'dist']
@@ -27,9 +28,16 @@ gulp.task 'build', ->
   gulp.src(['lib/**/*', '*.html', 'css/**/*', 'js/**/*'], {base: "."})
     .pipe (gulp.dest 'dist')
 
-gulp.task 'compress', ->
+gulp.task 'compress', ['compress:html', 'compress:css']
+
+gulp.task 'compress:html', ->
   gulp.src 'dist/**/*.html', {base: "."}
     .pipe htmlmin({collapseWhitespace: true})
+    .pipe (gulp.dest '.')
+
+gulp.task 'compress:css', ->
+  gulp.src 'dist/**/*.css', {base: "."}
+    .pipe cssmin()
     .pipe (gulp.dest '.')
 
 gulp.task 'bower', ->
