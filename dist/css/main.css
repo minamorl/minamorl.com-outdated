@@ -15,9 +15,7 @@ header {
     border: none;
     text-decoration: none; }
     header a.logo:hover {
-      text-decoration: none; }
-    header a.logo:visited {
-      text-decoration: none; }
+      color: #3c3c3c; }
 
 article h1 {
   font-size: 28px;
