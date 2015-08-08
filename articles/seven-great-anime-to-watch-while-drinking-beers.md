@@ -18,3 +18,6 @@ timestamp: 2015-08-08T23:45:14+0900
 今よく見返したら実際に最近ビールと飲んだアニメのリストだった。
 
 結論としてはビールを飲みながらアニメ見るとほとんど頭に入らないので、どうせ観るならぶっ飛んだアニメかまったり出来るアニメが楽しいと思います。
+
+<blockquote class="twitter-tweet" lang="ja"><p lang="ja" dir="ltr">GJ部いいと思うんだけどあの、肉食べてる人だけはマジで肉食べてる人が唐突に存在しているという感想しかない</p>&mdash; みなもーる (@minamorl) <a href="https://twitter.com/minamorl/status/630024891698286593">2015, 8月 8</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
