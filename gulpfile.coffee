@@ -118,3 +118,8 @@ gulp.task 'webserver', ->
   gulp.src 'dist'
     .pipe webserver
       livereload: true,
+      proxies:[
+        source: '/bucket',
+        target: 'http://minamorl.com/bucket',
+      ]
+
