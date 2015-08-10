@@ -20,6 +20,7 @@ marked      = require 'marked'
 git         = require 'gulp-git'
 htmlmin     = require 'gulp-htmlmin'
 cssmin      = require 'gulp-minify-css'
+webserver   = require 'gulp-webserver'
 
 gulp.task 'clean', ->
   del ['.tmp', 'dist']
@@ -110,3 +111,10 @@ gulp.task 'deploy', ->
 
 gulp.task 'git-add', ->
   gulp.src ['./articles/**/*.md', './dist/**/*']
+
+gulp.task 'webserver', ->
+  gulp.watch './sass/**/*.sass', ['sass']
+
+  gulp.src 'dist'
+    .pipe webserver
+      livereload: true,
