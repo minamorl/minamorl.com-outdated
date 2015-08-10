@@ -10,6 +10,11 @@ html(lang="ja")
 
     block title
       title minamorl.com
+    block twitter
+      meta(name="twitter:card" content="summary")
+      meta(name="twitter:site" content="@minamorl")
+      meta(name="twitter:title" content=title + " - minamorl.com")
+      meta(name="twitter:description" content=title)
 
     script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js" charset="utf-8")
     script hljs.initHighlightingOnLoad();
