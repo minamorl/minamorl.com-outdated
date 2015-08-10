@@ -1,41 +1,24 @@
-doctype html
-html(lang="ja")
-  head
-    meta(charset="utf-8")
+extends _layout.jade
 
-    meta(name="viewport", content="initial-scale=1.0")
-    link(rel="stylesheet",href="./lib/normalize.css",type="text/css")
-    link(rel="stylesheet",href="./css/main.css",type="text/css")
-    link(rel="stylesheet",href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/github.min.css",type="text/css")
-    title minamorl.com
-    script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js" charset="utf-8")
-    script hljs.initHighlightingOnLoad();
-    script(src='/js/analytics.js')
+block content
+  article
+    h1= title
+    time= timestamp
+    div!= contents
 
-  body
-    header
-      .content
-        a(class="logo",href="/") minamorl.com
-
-    .content
-      article
-        h1= title
-        time= timestamp
-        div!= contents
-
-      footer
-        .articles
-          h2 Recent Articles
-          ul
-            for filename in dir
-              li 
-                a(href="articles/"+filename)= filename
-        .bio
-          h2 Bio
-          p name: minamorl
-          p twitter: 
-            a(href="https://twitter.com/minamorl/") @minamorl
-          ul
-            li ドール(azone)
-            li 熱帯魚の飼育・多肉植物栽培などを中心に生活している
-            li 医薬品検索エンジンChlorixの開発に携わった
+  footer
+    .articles
+      h2 Recent Articles
+      ul
+        for filename in dir
+          li 
+            a(href="articles/"+filename)= filename
+    .bio
+      h2 Bio
+      p name: minamorl
+      p twitter: 
+        a(href="https://twitter.com/minamorl/") @minamorl
+      ul
+        li ドール(azone)
+        li 熱帯魚の飼育・多肉植物の栽培
+        li 医薬品検索エンジンChlorixの開発に携わった。
