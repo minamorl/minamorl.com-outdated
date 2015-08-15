@@ -3,10 +3,20 @@
 $font-family: Avenir , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "メイリオ" , Meiryo , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" ,  "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif
 $article-main-font-size: 16px
 $logo-color: #6F6F6F
+$link-color: #308ca8
 
 body 
   font-family: $font-family
   background-color: #F5F5F5
+
+  a
+    color: $link-color
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+    &:visited
+      color: darken($link-color, 25%)
+      
 
 header 
   padding: 10px 0
@@ -54,7 +64,10 @@ img
 
 footer 
   margin-top: 60px
+  padding-bottom: 20px
+
   h2 
+    margin-top: 30px
     margin-bottom: 10px
   .articles li
     time
@@ -78,6 +91,11 @@ footer
   .user-bio
     display:inline-block
     vertical-align: top
+
+    a
+      &:visited
+        color: $link-color
+
     ul
       padding: 0 00px
       margin: 0 20px
@@ -93,6 +111,3 @@ pre
     line-height: 1.5
     border: 1px solid #CCC
     padding: 10px
-
-footer
-
