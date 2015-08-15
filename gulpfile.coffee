@@ -85,8 +85,8 @@ gulp.task 'build:articles', ->
     .pipe tap((file) ->
       extname = path.extname(path)
       name =
-        dirname:  path.dirname(file.path),
-        basename: path.basename(file.path, extname),
+        dirname  : path.dirname(file.path),
+        basename : path.basename(file.path, extname),
       file.path = path.join name.dirname, file.frontMatter.timestamp + "-" + name.basename
     )
     .pipe gulp.dest('./dist/articles')
