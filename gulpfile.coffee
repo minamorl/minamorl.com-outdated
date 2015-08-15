@@ -58,6 +58,18 @@ gulp.task 'default', ->
 gulp.task 'deploy', ->
   runSequence 'clean', 'bower', 'sass', 'build', 'compress'
 
+gulp.task 'git:add', ->
+  gulp.src '.'
+    .pipe git.add
+      args: '-A :/'
+
+gulp.task 'git:commit', ->
+  gulp.src '.'
+    .pipe git.commit('(auto) deploy')
+
+gulp.task 'git:push', ->
+  git.push 'origin', 'master'
+
 gulp.task 'build', ['build:misc', 'build:articles', 'build:index']
 
 gulp.task 'build:articles', ->
@@ -111,8 +123,10 @@ gulp.task 'build:index', ->
       .pipe gulp.dest('./dist')
 
 gulp.task 'serve', ->
-  gulp.watch './sass/**/*.sass', ['sass']
-  gulp.watch ['./templates/**/*.jade', './articles/**/*.md'], ['build']
+  gulp.watch './sass/**/*.sass', ->
+    runSequence 'sass', 'compress'
+  gulp.watch ['./templates/**/*.jade', './articles/**/*.md'], ->
+    runSequence 'build', 'compress'
   gulp.src 'dist'
     .pipe webserver
       livereload: true,
