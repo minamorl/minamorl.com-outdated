@@ -53,7 +53,7 @@ gulp.task 'sass', ->
     .pipe(gulp.dest('./dist/css'))
 
 gulp.task 'default', ->
-  runSequence 'clean', 'bower', 'sass', 'build', 'compress', 'deploy'
+  runSequence 'clean', 'bower', 'sass', 'build', 'compress'
 
 gulp.task 'build', ['build:misc', 'build:articles', 'build:index']
 
@@ -106,13 +106,7 @@ gulp.task 'build:index', ->
         path.basename = "index"
       .pipe gulp.dest('./dist')
 
-gulp.task 'deploy', ->
-  runSequence 'git-add'
-
-gulp.task 'git-add', ->
-  gulp.src ['./articles/**/*.md', './dist/**/*']
-
-gulp.task 'webserver', ->
+gulp.task 'serve', ->
   gulp.watch './sass/**/*.sass', ['sass']
   gulp.watch ['./templates/**/*.jade', './articles/**/*.md'], ['build']
   gulp.src 'dist'
