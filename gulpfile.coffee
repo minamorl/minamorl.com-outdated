@@ -53,6 +53,9 @@ gulp.task 'sass', ->
     .pipe(gulp.dest('./dist/css'))
 
 gulp.task 'default', ->
+  runSequence 'clean', 'bower', 'sass', 'build', 'serve'
+
+gulp.task 'deploy', ->
   runSequence 'clean', 'bower', 'sass', 'build', 'compress'
 
 gulp.task 'build', ['build:misc', 'build:articles', 'build:index']
@@ -68,13 +71,11 @@ gulp.task 'build:articles', ->
       merge(defaultLayout, file.frontMatter)
     )
     .pipe tap((file) ->
-      console.log file.path
       extname = path.extname(path)
       name =
         dirname:  path.dirname(file.path),
         basename: path.basename(file.path, extname),
       file.path = path.join name.dirname, file.frontMatter.timestamp + "-" + name.basename
-      console.log file.path
     )
     .pipe gulp.dest('./dist/articles')
 
