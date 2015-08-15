@@ -26,7 +26,7 @@ webserver   = require 'gulp-webserver'
 gulp.task 'clean', ->
   del ['.tmp', 'dist']
 
-gulp.task 'build', ->
+gulp.task 'build:misc', ->
   gulp.src(['lib/**/*', '*.html', 'css/**/*', 'js/**/*'], {base: "."})
     .pipe (gulp.dest 'dist')
 
@@ -52,13 +52,12 @@ gulp.task 'sass', ->
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./dist/css'))
 
-gulp.task 'watch', ->
-  gulp.watch ['sass/**/*.scss'], ['sass']
-
 gulp.task 'default', ->
-  runSequence 'clean', 'bower', 'sass', 'markdown', 'update-index', 'build', 'compress', 'deploy'
+  runSequence 'clean', 'bower', 'sass', 'build', 'compress', 'deploy'
 
-gulp.task 'markdown', ->
+gulp.task 'build', ['build:misc', 'build:articles', 'build:index']
+
+gulp.task 'build:articles', ->
   defaultLayout =
     layout: "templates/article.jade"
   merged = {}
@@ -79,7 +78,7 @@ gulp.task 'markdown', ->
     )
     .pipe gulp.dest('./dist/articles')
 
-gulp.task 'update-index', ->
+gulp.task 'build:index', ->
   defaultLayout =
     layout: "templates/index.jade"
   fs.readdir 'articles', (err, markdown_filenames) ->
@@ -115,7 +114,7 @@ gulp.task 'git-add', ->
 
 gulp.task 'webserver', ->
   gulp.watch './sass/**/*.sass', ['sass']
-
+  gulp.watch ['./templates/**/*.jade', './articles/**/*.md'], ['build']
   gulp.src 'dist'
     .pipe webserver
       livereload: true,
