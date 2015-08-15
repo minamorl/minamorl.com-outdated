@@ -85,17 +85,20 @@ gulp.task 'build:index', ->
   fs.readdir 'articles', (err, markdown_filenames) ->
     parsed = []
     for filename in markdown_filenames
+      yaml = yamlFront.loadFront (fs.readFileSync 'articles/' + filename)
       parsed.push
         filename: filename
-        yaml: yamlFront.loadFront (fs.readFileSync 'articles/' + filename)
+        target: "articles/" + yaml.timestamp + "-" + filename.replace('.md', '.html')
+        yaml: yaml
 
-    parsed.sort (a, b) ->
+    _by_timestamp = (a, b) ->
       if a.yaml.timestamp < b.yaml.timestamp
         return 1
       if a.yaml.timestamp > b.yaml.timestamp
         return -1
       return 0
 
+    parsed.sort _by_timestamp
     newest = parsed[0].filename
 
     gulp.src "articles/" + newest

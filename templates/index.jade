@@ -18,7 +18,7 @@ block content
       ul
         for item in dir
           li 
-            a(href="articles/"+ item.yaml.timestamp + "-" + item.filename.replace(".md", ".html"))= item.yaml.title
+            a(href=item.target)= item.yaml.title
             time= item.yaml.timestamp
     .bio
       h2 Bio
