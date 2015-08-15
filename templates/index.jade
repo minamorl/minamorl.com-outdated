@@ -16,9 +16,10 @@ block content
     .articles
       h2 Recent Articles
       ul
-        for filename in dir
+        for item in dir
           li 
-            a(href="articles/"+filename)= filename
+            a(href="articles/"+ item.yaml.timestamp + "-" + item.filename.replace(".md", ".html"))= item.yaml.title
+            time= item.yaml.timestamp
     .bio
       h2 Bio
       img.user-image(src="/bucket/ca7b882483772b2df5ac2d9be51c1211c4609827.jpeg")

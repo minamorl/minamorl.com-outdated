@@ -35,7 +35,8 @@
     "gulp-webserver": "^0.9.1",
     "jade": "^1.11.0",
     "marked": "^0.3.4",
-    "run-sequence": "^1.1.2"
+    "run-sequence": "^1.1.2",
+    "yaml-front-matter": "^3.2.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

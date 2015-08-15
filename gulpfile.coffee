@@ -9,6 +9,7 @@ sass        = require 'gulp-sass'
 runSequence = require 'run-sequence'
 merge       = require 'merge'
 frontMatter = require 'gulp-front-matter'
+yamlFront   = require 'yaml-front-matter'
 layout      = require 'gulp-layout'
 markdown    = require 'gulp-markdown'
 jade        = require 'gulp-jade'
@@ -81,27 +82,27 @@ gulp.task 'markdown', ->
 gulp.task 'update-index', ->
   defaultLayout =
     layout: "templates/index.jade"
-  fs.readdir 'dist/articles', (err, filenames) ->
+  fs.readdir 'articles', (err, markdown_filenames) ->
+    parsed = []
+    for filename in markdown_filenames
+      parsed.push
+        filename: filename
+        yaml: yamlFront.loadFront (fs.readFileSync 'articles/' + filename)
 
-    filenames.sort (a, b) ->
-      if a < b
+    parsed.sort (a, b) ->
+      if a.yaml.timestamp < b.yaml.timestamp
         return 1
-      if a > b
+      if a.yaml.timestamp > b.yaml.timestamp
         return -1
       return 0
 
-    newest = filenames[0].replace('.html', '.md')
-    newest = newest.split("+0900-")
-    newest = newest[newest.length-1]
-    newest = path.resolve(__dirname, "articles",  newest)
+    newest = parsed[0].filename
 
-    console.log newest
-
-    gulp.src newest
+    gulp.src "articles/" + newest
       .pipe frontMatter()
       .pipe markdown()
       .pipe layout ((file) ->
-        merge(defaultLayout, file.frontMatter, {dir: filenames}))
+        merge(defaultLayout, file.frontMatter, {dir: parsed}))
       .pipe rename (path) ->
         path.basename = "index"
       .pipe gulp.dest('./dist')
@@ -122,4 +123,3 @@ gulp.task 'webserver', ->
         source: '/bucket',
         target: 'http://minamorl.com/bucket',
       ]
-
