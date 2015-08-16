@@ -121,3 +121,4 @@ gulp.task 'serve', ->
       proxies:[
         source: '/bucket',
         target: 'http://minamorl.com/bucket',
+      ]
