@@ -58,18 +58,6 @@ gulp.task 'default', ->
 gulp.task 'deploy', ->
   runSequence 'clean', 'bower', 'sass', 'build', 'compress'
 
-gulp.task 'git:add', ->
-  gulp.src '.'
-    .pipe git.add
-      args: '-A :/'
-
-gulp.task 'git:commit', ->
-  gulp.src '.'
-    .pipe git.commit('(auto) deploy')
-
-gulp.task 'git:push', ->
-  git.push 'origin', 'master'
-
 gulp.task 'build', ['build:misc', 'build:articles', 'build:index']
 
 gulp.task 'build:articles', ->
@@ -133,4 +121,3 @@ gulp.task 'serve', ->
       proxies:[
         source: '/bucket',
         target: 'http://minamorl.com/bucket',
-      ]
