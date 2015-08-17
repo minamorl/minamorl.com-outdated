@@ -5,15 +5,15 @@ timestamp: 2015-08-18T04:14:34+0900
 
 このサイトのコードをgithub上で公開した。 
 
-[minamorl/minamorl.com - github.com](https://github.com/minamorl/minamorl.com)
+[<span class="octicon octicon-link-external"></span> minamorl/minamorl.com - github.com](https://github.com/minamorl/minamorl.com)
 
-前回の投稿から色々と変更点は出ているが大まかな点についてはあまり変化がない。[gulpfile.coffee](https://github.com/minamorl/minamorl.com/blob/master/gulpfile.coffee)を参照してほしい。
+前回の投稿から色々と変更点は出ているが大まかな点についてはあまり変化がない。[<span class="octicon octicon-link-external"></span> gulpfile.coffee](https://github.com/minamorl/minamorl.com/blob/master/gulpfile.coffee)を参照してほしい。
 
 ## gulp-webserverの導入
 
 Gulp側でテスト用のサーバを用意に構築することが出来るライブラリ。現状livereloadに対応していてまともに動くのはこれ一択という感じ。
 
-[gulp-webserver](https://www.npmjs.com/package/gulp-webserver)
+[<span class="octicon octicon-link-external"></span> gulp-webserver](https://www.npmjs.com/package/gulp-webserver)
 
 実際にこのサイト上で使われているものと同様のものを掲載する
 ```coffeescript
@@ -87,6 +87,6 @@ git commit -mでコミットを作る。あとは本番のベアリポジトリ�
 
 ## まとめ
 
-gulpで静的ページを作るの、本当に心の底からおすすめしない。もっと[HugoとかいうGoで書かれたモダンでイケイケなもの](http://gohugo.io/)があるのでそれ使ってくださいという感じ。
+gulpで静的ページを作るの、本当に心の底からおすすめしない。もっと[<span class="octicon octicon-link-external"></span> HugoとかいうGoで書かれたモダンでイケイケなもの](http://gohugo.io/)があるのでそれ使ってくださいという感じ。
 
 あと今回肝心のbareリポジトリ側の設定について書かなかったのだが、post-receive hookを設置することによって自動でpullする設定については後日気が向いたら書く。
