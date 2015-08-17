@@ -2,4 +2,4 @@ deployment:
   production:
     branch: master
     commands:
-      - git push ssh://minamorl.com:48363/~/repos/minamorl.com $CIRCLE_SHA1:master
+      - git push -f ssh://git@minamorl.com:48363/~/minamorl.com master
