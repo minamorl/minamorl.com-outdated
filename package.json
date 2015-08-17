@@ -38,9 +38,6 @@
     "run-sequence": "^1.1.2",
     "yaml-front-matter": "^3.2.3"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "celirx@minamorl-com:~/repos/minamorl-com"
