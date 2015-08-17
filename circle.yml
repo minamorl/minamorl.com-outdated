@@ -2,4 +2,6 @@ deployment:
   production:
     branch: master
     commands:
+      - git add dist
+      - git commit -m "[circleci]"
       - git push -f ssh://git@minamorl.com:48363/~/minamorl.com master
