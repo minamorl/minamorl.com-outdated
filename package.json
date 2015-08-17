@@ -38,6 +38,9 @@
     "run-sequence": "^1.1.2",
     "yaml-front-matter": "^3.2.3"
   },
+  "scripts": {
+    "test": "gulp deploy"
+  },
   "repository": {
     "type": "git",
     "url": "celirx@minamorl-com:~/repos/minamorl-com"
