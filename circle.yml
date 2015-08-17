@@ -1,0 +1,5 @@
+deployment:
+  production:
+    branch: master
+     commands:
+       - git push ssh://minamorl.com:48363/~/repos/minamorl.com master
