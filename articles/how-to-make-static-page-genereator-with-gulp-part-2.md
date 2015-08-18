@@ -89,4 +89,21 @@ git commit -mでコミットを作る。あとは本番のベアリポジトリ�
 
 gulpで静的ページを作るの、本当に心の底からおすすめしない。もっと[<span class="octicon octicon-link-external"></span> HugoとかいうGoで書かれたモダンでイケイケなもの](http://gohugo.io/)があるのでそれ使ってくださいという感じ。
 
-あと今回肝心のbareリポジトリ側の設定について書かなかったのだが、post-receive hookを設置することによって自動でpullする設定については後日気が向いたら書く。
+あと今回肝心のbareリポジトリ側の設定について書かなかったのだが、post-receive hookを設置することによって自動でpullする設定については<del>後日気が向いたら書く</del>下記の追記を参照。
+
+## 追記：bareリポジトリからマージコンフリクトを回避してpost-receive hookを発動させる
+
+まず全体のフローとしては(local) -> github -> circleci -> vps上のbare repository -> 設置される実際のrepo という風に多段階のプロセスを踏んでいる。githubからcircleciはwebhookを通して、またcircleciからリモートのbare repositoryにはcircle.yml内からのpushによって行われる。
+
+最後はどうするかというとリモートのベアリポジトリが更新された段階でpost-receive hookを発動させるわけだが、今回のようにcircleciから本番用のコミットを生成してpush -fするような仕組みのなかでは当然post-receiveのなかで`git pull`するとマージコンフリクトに遭遇する。
+
+これを防ぐために次のような方策をとった。
+
+```sh
+#!/bin/sh
+cd $working_dir
+git --git-dir=.git fetch --all
+git --git-dir=.git reset --hard origin/master
+```
+
+このように`git pull`せずにfetchしたあと`reset --hard origin/master`することでconflictを防げる。
