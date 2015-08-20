@@ -7,11 +7,12 @@ block twitter
   meta(name="twitter:description" content="minamorl.com")
 
 block content
-  article
-    h1
-      a(href=dir[0].target)= title
-    time= timestamp
-    div!= contents
+  for article in dir.slice(0, 3)
+    article
+      h1
+        a(href=article.target)= article.yaml.title
+      time= article.yaml.timestamp
+      div!= article.yaml.__content
 
   footer
     .articles

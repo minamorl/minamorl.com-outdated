@@ -99,15 +99,11 @@ gulp.task 'build:index', ->
       return 0
 
     parsed.sort _by_timestamp
-    newest = parsed[0].filename
 
-    gulp.src "articles/" + newest
-      .pipe frontMatter()
-      .pipe markdown()
-      .pipe layout ((file) ->
-        merge(defaultLayout, file.frontMatter, {dir: parsed}))
-      .pipe rename (path) ->
-        path.basename = "index"
+    gulp.src "./templates/index.jade"
+      .pipe jade
+        locals:
+          dir: parsed
       .pipe gulp.dest('./dist')
 
 gulp.task 'serve', ->
