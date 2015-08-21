@@ -103,7 +103,8 @@ gulp.task 'build:index', ->
     gulp.src "./templates/index.jade"
       .pipe jade
         locals:
-          dir: parsed
+          dir: parsed,
+          marked: marked,
       .pipe gulp.dest('./dist')
 
 gulp.task 'serve', ->
@@ -116,5 +117,5 @@ gulp.task 'serve', ->
       livereload: true,
       proxies:[
         source: '/bucket',
-        target: 'http://minamorl.com/bucket',
+        target: 'http://minamorl.com/bucket'
       ]

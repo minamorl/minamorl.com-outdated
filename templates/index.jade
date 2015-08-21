@@ -12,7 +12,7 @@ block content
       h1
         a(href=article.target)= article.yaml.title
       time= article.yaml.timestamp
-      div!= article.yaml.__content
+      div!= marked(article.yaml.__content)
 
   footer
     .articles
