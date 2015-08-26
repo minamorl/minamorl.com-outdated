@@ -1,27 +1,30 @@
-gulp        = require 'gulp'
-del         = require 'del'
-bower       = require 'gulp-bower'
-flatten     = require 'gulp-flatten'
-uglify      = require 'gulp-uglify'
-cond        = require 'gulp-if'
-gutil       = require 'gulp-util'
-sass        = require 'gulp-sass'
-runSequence = require 'run-sequence'
-merge       = require 'merge'
-frontMatter = require 'gulp-front-matter'
-yamlFront   = require 'yaml-front-matter'
-layout      = require 'gulp-layout'
-markdown    = require 'gulp-markdown'
-jade        = require 'gulp-jade'
-fs          = require 'fs'
-rename      = require 'gulp-rename'
-tap         = require 'gulp-tap'
-path        = require 'path'
-marked      = require 'marked'
-git         = require 'gulp-git'
-htmlmin     = require 'gulp-htmlmin'
-cssmin      = require 'gulp-minify-css'
-webserver   = require 'gulp-webserver'
+gulp          = require 'gulp'
+del           = require 'del'
+bower         = require 'gulp-bower'
+flatten       = require 'gulp-flatten'
+uglify        = require 'gulp-uglify'
+cond          = require 'gulp-if'
+gutil         = require 'gulp-util'
+sass          = require 'gulp-sass'
+runSequence   = require 'run-sequence'
+merge         = require 'merge'
+frontMatter   = require 'gulp-front-matter'
+yamlFront     = require 'yaml-front-matter'
+layout        = require 'gulp-layout'
+markdown      = require 'gulp-markdown'
+jade          = require 'gulp-jade'
+fs            = require 'fs'
+rename        = require 'gulp-rename'
+tap           = require 'gulp-tap'
+path          = require 'path'
+marked        = require 'marked'
+git           = require 'gulp-git'
+htmlmin       = require 'gulp-htmlmin'
+cssmin        = require 'gulp-minify-css'
+webserver     = require 'gulp-webserver'
+webpack       = require 'webpack'
+webpackConfig = require "./webpack.config.coffee"
+
 
 gulp.task 'clean', ->
   del ['.tmp', 'dist']
@@ -53,10 +56,21 @@ gulp.task 'sass', ->
     .pipe(gulp.dest('./dist/css'))
 
 gulp.task 'default', ->
-  runSequence 'clean', 'bower', 'sass', 'build', 'serve'
+  runSequence 'clean', 'bower', 'sass', 'build', 'webpack', 'serve'
 
 gulp.task 'deploy', ->
-  runSequence 'clean', 'bower', 'sass', 'build', 'compress'
+  runSequence 'clean', 'bower', 'sass', 'build', 'compress', 'webpack'
+
+gulp.task 'webpack', (callback) ->
+  myConfig = Object.create(webpackConfig)
+  webpack(myConfig, (err, stats) ->
+    if(err)
+      throw new gutil.PluginError("webpack:build", err)
+    gutil.log("[webpack:build]", stats.toString({
+      colors: true
+    }))
+    callback()
+  )
 
 gulp.task 'build', ['build:misc', 'build:articles', 'build:index']
 
