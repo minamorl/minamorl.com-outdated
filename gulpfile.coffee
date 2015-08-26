@@ -1,7 +1,6 @@
 gulp          = require 'gulp'
 del           = require 'del'
 bower         = require 'gulp-bower'
-flatten       = require 'gulp-flatten'
 uglify        = require 'gulp-uglify'
 cond          = require 'gulp-if'
 gutil         = require 'gulp-util'
@@ -47,13 +46,12 @@ gulp.task 'compress:css', ->
 
 gulp.task 'bower', ->
   bower()
-    .pipe flatten()
     .pipe (gulp.dest 'lib')
 
 gulp.task 'sass', ->
   gulp.src('./sass/**/*.sass')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./dist/css'))
+    .pipe(gulp.dest('./css'))
 
 gulp.task 'default', ->
   runSequence 'clean', 'bower', 'sass', 'build', 'webpack', 'serve'
