@@ -121,7 +121,7 @@ gulp.task 'build:index', ->
 
 gulp.task 'serve', ->
   gulp.watch './sass/**/*.sass', ->
-    runSequence 'sass', 'compress'
+    runSequence 'sass', 'compress', 'webpack'
   gulp.watch ['./templates/**/*.jade', './articles/**/*.md'], ->
     runSequence 'build', 'compress'
   gulp.src 'dist'
