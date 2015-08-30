@@ -29,7 +29,7 @@ gulp.task 'clean', ->
   del ['.tmp', 'dist']
 
 gulp.task 'build:misc', ->
-  gulp.src(['lib/**/*', '*.html', 'css/**/*', 'js/**/*'], {base: "."})
+  gulp.src(['*.html', 'css/**/*', 'js/**/*'], {base: "."})
     .pipe (gulp.dest 'dist')
 
 gulp.task 'compress', ['compress:html', 'compress:css']
@@ -46,7 +46,6 @@ gulp.task 'compress:css', ->
 
 gulp.task 'bower', ->
   bower()
-    .pipe (gulp.dest 'lib')
 
 gulp.task 'sass', ->
   gulp.src('./sass/**/*.sass')

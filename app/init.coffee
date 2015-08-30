@@ -1,2 +1,2 @@
-hljs = require '../lib/highlightjs/highlight.pack.min.js'
+hljs = require 'highlightjs/highlight.pack.min.js'
 hljs.initHighlightingOnLoad()
