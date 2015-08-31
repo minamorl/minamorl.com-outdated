@@ -123,6 +123,8 @@ gulp.task 'serve', ->
     runSequence 'sass', 'compress', 'webpack'
   gulp.watch ['./templates/**/*.jade', './articles/**/*.md'], ->
     runSequence 'build', 'compress'
+  gulp.watch ['./app/**/*'], ->
+    runSequence 'webpack'
   gulp.src 'dist'
     .pipe webserver
       livereload: true,
