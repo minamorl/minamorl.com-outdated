@@ -7,7 +7,7 @@ block twitter
   meta(name="twitter:description" content="minamorl.com")
 
 block content
-  for article in dir.slice(0, 3)
+  for article in dir.slice(0, 5)
     article
       h1
         a(href=article.target)= article.yaml.title
