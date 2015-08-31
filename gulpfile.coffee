@@ -47,16 +47,11 @@ gulp.task 'compress:css', ->
 gulp.task 'bower', ->
   bower()
 
-gulp.task 'sass', ->
-  gulp.src('./sass/**/*.sass')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./css'))
-
 gulp.task 'default', ->
-  runSequence 'clean', 'bower', 'sass', 'build', 'webpack', 'serve'
+  runSequence 'clean', 'bower', 'build', 'webpack', 'serve'
 
 gulp.task 'deploy', ->
-  runSequence 'clean', 'bower', 'sass', 'build', 'compress', 'webpack'
+  runSequence 'clean', 'bower', 'build', 'compress', 'webpack'
 
 gulp.task 'webpack', (callback) ->
   myConfig = Object.create(webpackConfig)
@@ -119,11 +114,9 @@ gulp.task 'build:index', ->
       .pipe gulp.dest('./dist')
 
 gulp.task 'serve', ->
-  gulp.watch './sass/**/*.sass', ->
-    runSequence 'sass', 'compress', 'webpack'
   gulp.watch ['./templates/**/*.jade', './articles/**/*.md'], ->
     runSequence 'build', 'compress'
-  gulp.watch ['./app/**/*'], ->
+  gulp.watch ['./app/**/*',  './sass/**/*.sass'], ->
     runSequence 'webpack'
   gulp.src 'dist'
     .pipe webserver
