@@ -23,6 +23,7 @@ cssmin        = require 'gulp-minify-css'
 webserver     = require 'gulp-webserver'
 webpack       = require 'webpack'
 webpackConfig = require "./webpack.config.coffee"
+cheerio       = require 'cheerio'
 
 
 gulp.task 'clean', ->
@@ -106,11 +107,18 @@ gulp.task 'build:index', ->
 
     parsed.sort _by_timestamp
 
+    first_three_tags = (str) ->
+      $ = cheerio.load(str)
+      console.log $.root().children()
+      return $.root().children().slice(0,2)
+
+
     gulp.src "./templates/index.jade"
       .pipe jade
         locals:
           dir: parsed,
           marked: marked,
+          first_three_tags: first_three_tags
       .pipe gulp.dest('./dist')
 
 gulp.task 'serve', ->
