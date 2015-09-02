@@ -20,3 +20,8 @@ Elecom EX-G1が確か購入当時\1500程度で手に入ったので少し使っ
 [<span class="octicon octicon-link-external"></span> LOGICOOL ロジクール エニウェアマウス M905t](http://www.amazon.co.jp/dp/B00E19YVJC)
 
 というわけで、各位、もう少しおすすめの商品があれば教えていただきたい。
+
+追記：
+
+<blockquote class="twitter-tweet" data-conversation="none" lang="ja"><p lang="ja" dir="ltr"><a href="https://twitter.com/minamorl">@minamorl</a> Ankerが安めのゲーミングマウス出しててちょっと気になってる（ゲーミングマウスが欲しいわけじゃなくてAnkerならまぁ大丈夫だろうという感じ） <a href="http://t.co/WSr5b1mh7c">http://t.co/WSr5b1mh7c</a></p>&mdash; 宮内でぱす (@dionore) <a href="https://twitter.com/dionore/status/639126965039972352">2015, 9月 2</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
