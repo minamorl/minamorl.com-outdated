@@ -107,18 +107,23 @@ gulp.task 'build:index', ->
 
     parsed.sort _by_timestamp
 
-    first_three_tags = (str) ->
-      $ = cheerio.load(str)
-      console.log $.root().children()
-      return $.root().children().slice(0,2)
+    get_comments = (str) ->
+      readmore = /<!--\s*read\s*more\s*-->/i
+      str.match(readmore)
 
+    get_elements_before_readmore = (str) ->
+      comment = get_comments(str)
+      if comment
+        return str.split(comment[0])[0]
+      return str
 
     gulp.src "./templates/index.jade"
       .pipe jade
         locals:
           dir: parsed,
           marked: marked,
-          first_three_tags: first_three_tags
+          get_comments: get_comments
+          get_elements_before_readmore: get_elements_before_readmore
       .pipe gulp.dest('./dist')
 
 gulp.task 'serve', ->

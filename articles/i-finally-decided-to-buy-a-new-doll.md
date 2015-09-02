@@ -6,6 +6,7 @@ timestamp: 2015-08-20T17:02:18+0900
 気づいたら中野にいたわけ。
 
 <img src="/bucket/54e7fe181d1eae0f05cd89940c966db5ca525df6.JPG:thumb" alt="中野の街の風景。">
+<!-- read more -->
 
 気づいたら意識が消えていた。
 

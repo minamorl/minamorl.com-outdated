@@ -12,8 +12,9 @@ block content
       h1
         a(href=article.target)= article.yaml.title
       time= article.yaml.timestamp
-      div!= first_three_tags(marked(article.yaml.__content))
-        a(href=article.target) 続きを読む
+      div!= get_elements_before_readmore(marked(article.yaml.__content))
+        if get_comments(marked(article.yaml.__content))
+          a(href=article.target) 続きを読む
 
   footer
     .articles
