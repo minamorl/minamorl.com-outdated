@@ -25,3 +25,6 @@ Elecom EX-G1が確か購入当時\1500程度で手に入ったので少し使っ
 
 <blockquote class="twitter-tweet" data-conversation="none" lang="ja"><p lang="ja" dir="ltr"><a href="https://twitter.com/minamorl">@minamorl</a> Ankerが安めのゲーミングマウス出しててちょっと気になってる（ゲーミングマウスが欲しいわけじゃなくてAnkerならまぁ大丈夫だろうという感じ） <a href="http://t.co/WSr5b1mh7c">http://t.co/WSr5b1mh7c</a></p>&mdash; 宮内でぱす (@dionore) <a href="https://twitter.com/dionore/status/639126965039972352">2015, 9月 2</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" lang="ja"><p lang="ja" dir="ltr">マウスは昔はMX Revolution(<a href="http://t.co/V1lDq0G3dZ">http://t.co/V1lDq0G3dZ</a>)使ってて今はM950(<a href="http://t.co/fNyW9Zdpdh">http://t.co/fNyW9Zdpdh</a>)使ってる。昔のは職場用にした。ちなみにクリック部分のマイクロスイッチにガタがきやすくてチャタる。それさえ除けば良品。</p>&mdash; EOF (@eofor0) <a href="https://twitter.com/eofor0/status/639136650631606272">2015, 9月 2</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
