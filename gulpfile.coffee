@@ -54,9 +54,8 @@ gulp.task 'default', ->
 gulp.task 'deploy', ->
   runSequence 'clean', 'bower', 'build', 'compress', 'webpack:prod'
 
-gulp.task 'webpack', (callback) ->
-  myConfig = Object.create(webpackConfig)
-  webpack(myConfig, (err, stats) ->
+_webpack = (config, callback) ->
+  webpack(config, (err, stats) ->
     if(err)
       throw new gutil.PluginError("webpack:build", err)
     gutil.log("[webpack:build]", stats.toString({
@@ -65,16 +64,13 @@ gulp.task 'webpack', (callback) ->
     callback()
   )
 
+gulp.task 'webpack', (callback) ->
+  myConfig = Object.create(webpackConfig)
+  _webpack myConfig, callback
+
 gulp.task 'webpack:prod', (callback) ->
   myConfig = Object.create(webpackProd)
-  webpack(myConfig, (err, stats) ->
-    if(err)
-      throw new gutil.PluginError("webpack:build", err)
-    gutil.log("[webpack:build]", stats.toString({
-      colors: true
-    }))
-    callback()
-  )
+  _webpack myConfig, callback
 
 gulp.task 'build', ['build:misc', 'build:articles', 'build:index']
 
