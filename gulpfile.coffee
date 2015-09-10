@@ -22,6 +22,7 @@ cssmin        = require 'gulp-minify-css'
 webserver     = require 'gulp-webserver'
 webpack       = require 'webpack'
 webpackConfig = require "./webpack.config.coffee"
+webpackProd   = require "./webpack.config.production.coffee"
 cheerio       = require 'cheerio'
 
 
@@ -51,10 +52,21 @@ gulp.task 'default', ->
   runSequence 'clean', 'bower', 'build', 'webpack', 'serve'
 
 gulp.task 'deploy', ->
-  runSequence 'clean', 'bower', 'build', 'compress', 'webpack'
+  runSequence 'clean', 'bower', 'build', 'compress', 'webpack:prod'
 
 gulp.task 'webpack', (callback) ->
   myConfig = Object.create(webpackConfig)
+  webpack(myConfig, (err, stats) ->
+    if(err)
+      throw new gutil.PluginError("webpack:build", err)
+    gutil.log("[webpack:build]", stats.toString({
+      colors: true
+    }))
+    callback()
+  )
+
+gulp.task 'webpack:prod', (callback) ->
+  myConfig = Object.create(webpackProd)
   webpack(myConfig, (err, stats) ->
     if(err)
       throw new gutil.PluginError("webpack:build", err)
