@@ -5,7 +5,7 @@ timestamp: 2015-09-11T17:29:58+0900
 
 ## staccato
 
-![staccato logo](bucket/8dabb81766f30e7627b9633acd752a7f05ca63f4.png)
+![staccato logo](/bucket/8dabb81766f30e7627b9633acd752a7f05ca63f4.png)
 
 個人で開発している別のプロダクトで使うようのTwitter関係のライブラリを探していて、以前はtweepyという非常に素晴らしいものが存在していたのだが、Python2から移行期に使えなくなり（現在は不明。もしかしたら使えるかも）毎回requestsだよりとはいえほそぼそと手書きする生活を送っていた。
 
