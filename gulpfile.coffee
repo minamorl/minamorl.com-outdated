@@ -30,7 +30,7 @@ gulp.task 'clean', ->
   del ['.tmp', 'dist']
 
 gulp.task 'build:misc', ->
-  gulp.src(['*.html', 'css/**/*', 'js/**/*'], {base: "."})
+  gulp.src(['favicon/**/*', '*.html', 'css/**/*', 'js/**/*'], {base: "."})
     .pipe (gulp.dest 'dist')
 
 gulp.task 'compress', ['compress:html', 'compress:css']
