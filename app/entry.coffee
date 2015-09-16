@@ -1,8 +1,12 @@
 require 'highlightjs/styles/github.css'
 require 'normalize.css/normalize.css'
 require 'octicons/octicons/octicons.css'
+require '../sass/main.sass'
+require '../sass/snippet.sass'
+require '../sass/google-search-engine.sass'
+require '../sass/footer.sass'
+require '../sass/article.sass'
 
 require './init.coffee'
 require './analytics.js'
 require './cse.js'
-require '../sass/main.sass'

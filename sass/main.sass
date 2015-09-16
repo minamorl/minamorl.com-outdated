@@ -1,31 +1,22 @@
 @import url(http://fonts.googleapis.com/css?family=Abril+Fatface)
 
 $font-family: Avenir , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "メイリオ" , Meiryo , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" ,  "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif
-$article-main-font-size: 16px
 $logo-color: #6F6F6F
 $link-color: #308ca8
-
-.google-engine
-  .gsc-control-cse
-    padding: 0
-    border: none
-    background-color: transparent
-  .cse .gsc-control-cse, .gsc-control-cse 
-    background-color: transparent
-    border: none
+$body-background-color: #F5F5F5 
+$content-max-width: 1024px
 
 body 
   font-family: $font-family
-  background-color: #F5F5F5
+  background-color: $body-background-color
 
-  a
-    color: $link-color
-    text-decoration: none
-    &:hover
-      text-decoration: underline
-    &:visited
-      color: darken($link-color, 15%)
-      
+a
+  color: $link-color
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+  &:visited
+    color: darken($link-color, 15%)
 
 header 
   padding: 10px 0
@@ -47,37 +38,9 @@ header
 article + article
   margin-top: 50px
 
-article 
-  h1 
-    font-size: 24px
-    margin-bottom: 0px
-    color: rgb(62, 104, 173)
-  h2
-    font-size: 22px
-    margin: 18px 0 8px 0
-  h3
-    font-size: 20px
-    margin: 18px 0 8px 0
-  time 
-    display: block
-    color: #acacac
-    border-left: 2px solid #cccccc
-    font-size: 12px
-    padding-left: 14px
-    margin-left: 2px
-    margin-bottom: 10px
-  p 
-    margin: 6px 0 6px 2px
-    font-size: $article-main-font-size
-    line-height: $article-main-font-size + 6px
-  blockquote
-    border-left: 4px solid rgb(232, 204, 204)
-    margin: 20px 0 20px 20px
-    background-color: #fafafa
-    padding: 10px 0 10px 20px
   
 .content 
-  max-width: 1024px
+  max-width: $content-max-width
   text-align:left
   margin-left: auto
   margin-right: auto
@@ -88,67 +51,6 @@ body > .content
 
 img
   max-width: 100%
-
-footer 
-  margin-top: 60px
-  padding-bottom: 20px
-
-  h2 
-    margin-top: 30px
-    margin-bottom: 10px
-  .articles li
-    time
-      font-size: 80%
-      color: #666
-      &:before
-        content: " - "
-      
-      
-  p 
-    margin: 0
-  img.user-image
-    display: inline-block 
-    width: 100px
-    height: 100px
-    position: relative
-    overflow: hidden
-    border-radius: 50%
-    vertical-align: top
-    margin-right: 30px
-  .user-bio
-    display:inline-block
-    vertical-align: top
-
-    a
-      &:visited
-        color: $link-color
-
-    ul
-      padding: 0 00px
-      margin: 0 20px
-      list-style-type: square
-
-
-pre 
-  code.hljs
-    display: block
-    background: #f6f6f6 none repeat scroll 0% 0%
-    color: #4D4D4C
-    font-family: Menlo,Monaco,Consolas,monospace
-    line-height: 1.5
-    border: 1px solid #CCC
-    border-radius: 4px
-    padding: 10px
-code
-    background: #f6f6f6 none repeat scroll 0% 0%
-    padding: 4px 8px
-    margin: 0 6px
-    color: #4D4D4C
-    font-family: Menlo,Monaco,Consolas,monospace
-    line-height: 1.5
-    border: 1px solid #CCC
-    border-radius: 4px
-
 ul
   padding: 5px 0 5px 20px
 
