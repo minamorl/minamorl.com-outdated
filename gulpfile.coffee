@@ -24,6 +24,7 @@ webpack       = require 'webpack'
 webpackConfig = require "./webpack.config.coffee"
 webpackProd   = require "./webpack.config.production.coffee"
 cheerio       = require 'cheerio'
+striptags     = require 'striptags'
 
 
 gulp.task 'clean', ->
@@ -76,13 +77,15 @@ gulp.task 'build', ['build:misc', 'build:articles', 'build:index']
 
 gulp.task 'build:articles', ->
   defaultLayout =
-    layout: "templates/article.jade"
+    layout: "templates/article.jade",
+    striptags: striptags
   merged = {}
   gulp.src 'articles/**/*.md'
     .pipe frontMatter()
     .pipe markdown()
     .pipe layout ((file) ->
-      merge(defaultLayout, file.frontMatter)
+      merged = merge(defaultLayout, file.frontMatter)
+      merged
     )
     .pipe tap((file) ->
       extname = path.extname(path)

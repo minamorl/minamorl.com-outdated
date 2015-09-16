@@ -1,5 +1,11 @@
 extends _layout.jade
 
+block twitter
+  meta(name="twitter:card" content="summary")
+  meta(name="twitter:site" content="@minamorl")
+  meta(name="twitter:title" content=title + " - minamorl.com")
+  meta(name="twitter:description" content=striptags(contents.toString()).slice(0,200))
+
 block title
   title #{title} - minamorl.com
 
