@@ -4,7 +4,7 @@ block twitter
   meta(name="twitter:card" content="summary")
   meta(name="twitter:site" content="@minamorl")
   meta(name="twitter:title" content=title + " - minamorl.com")
-  meta(name="twitter:description" content=striptags(contents.toString()).replace(/\s/g, '').slice(0,200))
+  meta(name="twitter:description" content=striptags(contents.toString()).trim().replace(/(?:\r\n|\r|\n)/g, '').slice(0,200))
 
 block title
   title #{title} - minamorl.com
