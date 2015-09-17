@@ -2,9 +2,9 @@ deployment:
   production:
     branch: master
     commands:
-      - ssh -o StrictHostKeyChecking=no minamorl.com
       - git add dist
       - git config --global user.email "minamorl@users.noreply.github.com"
       - git config --global user.name "minamorl"
       - git commit -m "[circleci]"
+      - export GIT_SSH="StrictHostKeyChecking=no"
       - git push -f ${SSH_SERVER} master
