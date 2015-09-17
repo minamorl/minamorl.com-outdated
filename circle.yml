@@ -2,9 +2,12 @@ deployment:
   production:
     branch: master
     commands:
+      - echo "Host *"  >> ~/.ssh/config
+      - echo "   StrictHostKeyChecking no"  >> ~/.ssh/config
+      - echo "   UserKnownHostsFile /dev/null"  >> ~/.ssh/config
+      - echo "   LogLevel ERROR"  >> ~/.ssh/config
       - git add dist
       - git config --global user.email "minamorl@users.noreply.github.com"
       - git config --global user.name "minamorl"
       - git commit -m "[circleci]"
-      - export GIT_SSH="StrictHostKeyChecking=no"
       - git push -f ${SSH_SERVER} master
