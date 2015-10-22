@@ -30,6 +30,7 @@
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.6",
     "gulp-webserver": "^0.9.1",
+    "image-webpack-loader": "^1.6.2",
     "jade": "^1.11.0",
     "marked": "^0.3.4",
     "run-sequence": "^1.1.2",

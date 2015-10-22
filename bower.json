@@ -13,7 +13,8 @@
     "tests"
   ],
   "dependencies": {
-    "normalize.css": "~3.0.3"
+    "normalize.css": "~3.0.3",
+    "lightbox2": "~2.8.1"
   },
   "devDependencies": {
     "octicons": "~3.1.0",

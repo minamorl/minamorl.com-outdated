@@ -7,6 +7,8 @@ require '../sass/google-search-engine.sass'
 require '../sass/footer.sass'
 require '../sass/article.sass'
 
+require 'lightbox2/dist/css/lightbox.css'
+
 require './init.coffee'
 require './analytics.js'
 require './cse.js'

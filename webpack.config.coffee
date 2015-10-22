@@ -11,7 +11,7 @@ module.exports =
             { test: /\.coffee$/, loader: "coffee-loader" },
             { test: /\.(coffee\.md|litcoffee)$/, loader: "coffee-loader?literate" },
             { test: /\.css$/, loader: "style-loader!css-loader" },
-            { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' },
+            { test: /\.(gif|png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' },
             { test: /\.sass$/, loader: "style!css!sass?indentedSyntax" }
         ]
 
