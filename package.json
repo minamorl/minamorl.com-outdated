@@ -47,7 +47,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "celirx@minamorl-com:~/repos/minamorl-com"
+    "url": "git@github.com:minamorl/minamorl.com"
   },
   "author": "",
   "license": "ISC"
