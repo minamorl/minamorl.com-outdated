@@ -1,5 +1,5 @@
 ---
-title: Flaskアプリケーションをgunicornでデプロイする方法
+title: Flaskアプリケーションをgunicornでデプロイする(よりよい)方法
 timestamp: 2015-11-26T23:29:21+0900
 ---
 
