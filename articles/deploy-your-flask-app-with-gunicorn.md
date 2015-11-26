@@ -5,7 +5,7 @@ timestamp: 2015-11-26T23:29:21+0900
 
 ## gunicornの基本
 
-gunicornはRubyのUnicornをモデルとしたpre-fork workerモデルを採用している。実装は簡単で、単純なアプリケーションなら以下の1行を書けばデプロイ終了となる:
+GunicornはRubyのUnicornをモデルとしたpre-fork workerモデルを採用している。単純なアプリケーションなら以下の1行を書けばデプロイ出来る:
 
 ```
 gunicorn -w 4 -b 127.0.0.1:8080 myproject:app -D
