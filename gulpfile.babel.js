@@ -67,7 +67,7 @@ gulp.task('deploy', () => {
 let _webpack = (config, callback) => {
   return webpack(config, (err, stats) => {
     if(err)
-      throw new gutil.PluginError("webpack:build", err)
+      throw new gutil.PluginError("webpack:build", err);
     gutil.log("[webpack:build]", stats.toString({
       colors: true
     }));
@@ -77,12 +77,12 @@ let _webpack = (config, callback) => {
 };
 
 gulp.task('webpack', (callback) => {
-  let myConfig = Object.create(webpackConfig)
+  let myConfig = Object.create(webpackConfig);
   return _webpack(myConfig, callback);
 });
 
 gulp.task('webpack:prod', (callback) => {
-  let myConfig = Object.create(webpackProd)
+  let myConfig = Object.create(webpackProd);
   return _webpack(myConfig, callback);
 });
 

@@ -17,8 +17,12 @@ module.exports = {
             { test: /\.sass$/, loader: "style!css!sass?indentedSyntax" },
             { test: /\.js$/, exclude: [
               /node_modules/, 
-              /bower_components/], loader: "babel-loader"}
+              /bower_components/
+            ], loader: "babel-loader"}
         ]
+    },
+    resolve: {
+        root: [path.join(__dirname, "bower_components")]
     },
     plugins: [
         new webpack.ResolverPlugin(
