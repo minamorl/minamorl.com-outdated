@@ -4,7 +4,7 @@ let path    = require("path")
 let webpack = require("webpack")
 module.exports = {
     context: __dirname + "/app",
-    entry: "./entry.coffee",
+    entry: "./entry.js",
     output: {
         path: __dirname + "/dist/app",
         filename: "bundle.js",
