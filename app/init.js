@@ -1,4 +1,4 @@
-hljs = require('highlightjs/highlight.pack.min.js')
+let hljs = require('highlightjs/highlight.pack.min.js')
 hljs.initHighlightingOnLoad()
 
 $ = require('jquery')
