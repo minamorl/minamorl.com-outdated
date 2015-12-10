@@ -18,7 +18,6 @@ pip install redis-orm
 ```
 
 ## How it works
-
 For first, you may declare your class which you want to persistent as derivered from `redisorm.core.PersistentData`. For example, we want to define User class like as above:
 
 ```
@@ -40,7 +39,7 @@ p.save(User(username="abc", password="def"))
 **redis-orm **automatically detects inside `__init__`, and cast every arguments declared in constructor into string, then save it into Redis server. So  lets read this one from server.
 
 ```
-user = p.load(User)
+user = p.load(User, 0)
 user.id # => 0
 user.username # => abc
 user.password # => def
