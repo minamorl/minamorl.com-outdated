@@ -2,12 +2,12 @@
   "name": "minamorl-com",
   "version": "1.0.0",
   "description": "",
-  "main": "gulpfile.js",
+  "main": "gulpfile.babel.js",
   "dependencies": {
-    "bower": "^1.7.2",
-    "merge": "^1.2.0"
   },
   "devDependencies": {
+    "bower": "^1.7.2",
+    "merge": "^1.2.0",
     "babel": "^6.3.26",
     "babel-core": "^6.3.26",
     "babel-loader": "^6.2.0",
