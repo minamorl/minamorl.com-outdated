@@ -20,12 +20,10 @@ let path          = require('path');
 let marked        = require('marked');
 let git           = require('gulp-git');
 let htmlmin       = require('gulp-htmlmin');
-let cssmin        = require('gulp-minify-css');
 let webserver     = require('gulp-webserver');
 let webpack       = require('webpack');
 let webpackConfig = require("./webpack.config");
 let webpackProd   = require("./webpack.config.production");
-let cheerio       = require('cheerio');
 let striptags     = require('striptags');
 
 gulp.task('clean', () => {
