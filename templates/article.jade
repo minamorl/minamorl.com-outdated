@@ -7,14 +7,14 @@ block twitter
   meta(name="twitter:description" content=striptags(contents.toString()).trim().replace(/(?:\r\n|\r|\n)/g, '').slice(0,200))
 
 block title
-  title #{title} - minamorl.com
+  title #{yaml.title} - minamorl.com
 
 block content
 
   article
-    h1= title
-    time= timestamp
-    div!= contents
+    h1= yaml.title
+    time= yaml.timestamp
+    div!= marked(yaml.__content)
   .sorcial
     a(href="https://twitter.com/share" class="twitter-share-button") Tweet
     script.

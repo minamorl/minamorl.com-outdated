@@ -1,10 +1,10 @@
 'use strict';
 
 let gulp          = require('gulp');
+let mkdirp        = require('mkdirp');
 let del           = require('del');
 let bower         = require('gulp-bower');
 let uglify        = require('gulp-uglify');
-let cond          = require('gulp-if');
 let gutil         = require('gulp-util');
 let runSequence   = require('run-sequence');
 let merge         = require('merge');
@@ -12,7 +12,7 @@ let frontMatter   = require('gulp-front-matter');
 let yamlFront     = require('yaml-front-matter');
 let layout        = require('gulp-layout');
 let markdown      = require('gulp-markdown');
-let jade          = require('gulp-jade');
+let jade          = require('jade');
 let fs            = require('fs');
 let rename        = require('gulp-rename');
 let tap           = require('gulp-tap');
@@ -25,6 +25,7 @@ let webpack       = require('webpack');
 let webpackConfig = require("./webpack.config");
 let webpackProd   = require("./webpack.config.production");
 let striptags     = require('striptags');
+let build         = require("./build");
 
 gulp.task('clean', () => {
   return del(['.tmp', 'dist']);
@@ -100,74 +101,9 @@ gulp.task('serve', () => {
 gulp.task('build', ['build:misc', 'build:articles', 'build:index']);
 
 gulp.task('build:articles', () => {
-  let defaultLayout = {
-    layout: "templates/article.jade",
-    striptags: striptags
-  };
-  let merged = {};
-  gulp.src('articles/**/*.md')
-    .pipe(frontMatter())
-    .pipe(markdown())
-    .pipe(layout((file) => {
-      return merge(defaultLayout, file.frontMatter);
-    }))
-    .pipe(tap((file) => {
-      let extname = path.extname(path);
-      let name = {
-        dirname  : path.dirname(file.path),
-        basename : path.basename(file.path, extname),
-      };
-      file.path = path.join(name.dirname, file.frontMatter.timestamp + "-" + name.basename);
-    }))
-    .pipe(gulp.dest('./dist/articles'));
+  build.build_articles()
 });
 
 gulp.task('build:index', () => {
-  let defaultLayout = {
-    layout: "templates/index.jade"
-  };
-  fs.readdir('articles', (err, markdown_filenames) => {
-    let parsed = [];
-    for (let filename of markdown_filenames) {
-      let yaml = yamlFront.loadFront(fs.readFileSync('articles/' + filename));
-      parsed.push({
-        filename: filename,
-        target: "articles/" + yaml.timestamp + "-" + filename.replace('.md', '.html'),
-        yaml: yaml,
-      });
-    }
-
-    let _by_timestamp = (a, b) => {
-      if (a.yaml.timestamp < b.yaml.timestamp)
-        return 1;
-      if (a.yaml.timestamp > b.yaml.timestamp)
-        return -1;
-      return 0;
-    }
-
-    parsed.sort(_by_timestamp);
-
-    let get_comments = (str) => {
-      let readmore = /<!--\s*read\s*more\s*-->/i;
-      str.match(readmore);
-    };
-
-    let get_elements_before_readmore = (str) => {
-      let comment = get_comments(str)
-      if(comment)
-        return str.split(comment[0])[0];
-      return str;
-    };
-
-    gulp.src("./templates/index.jade")
-      .pipe(jade({
-        locals: {
-          dir: parsed,
-          marked: marked,
-          get_comments: get_comments,
-          get_elements_before_readmore: get_elements_before_readmore,
-        }
-      }))
-      .pipe(gulp.dest('./dist'));
-    });
+  build.build_index()
 });
