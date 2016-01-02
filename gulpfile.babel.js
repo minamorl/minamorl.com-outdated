@@ -128,7 +128,7 @@ gulp.task('build:index', () => {
   };
   fs.readdir('articles', (err, markdown_filenames) => {
     let parsed = [];
-    for (var filename of markdown_filenames) {
+    for (let filename of markdown_filenames) {
       let yaml = yamlFront.loadFront(fs.readFileSync('articles/' + filename));
       parsed.push({
         filename: filename,
