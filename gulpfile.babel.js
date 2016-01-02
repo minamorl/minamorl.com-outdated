@@ -35,17 +35,11 @@ gulp.task('build:misc', () => {
     .pipe(gulp.dest('dist'))
 });
 
-gulp.task('compress', ['compress:html', 'compress:css'])
+gulp.task('compress', ['compress:html'])
 
 gulp.task('compress:html', () => {
   return gulp.src('dist/**/*.html', {base: "."})
     .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('.'));
-});
-
-gulp.task('compress:css', () => {
-  return gulp.src('dist/**/*.css', {base: "."})
-    .pipe(cssmin())
     .pipe(gulp.dest('.'));
 });
 
