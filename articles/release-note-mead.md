@@ -16,7 +16,7 @@ router = Router()
 @router.route("/", methods=["GET"])
 def helloworld(context):
     return response(JSONObject({
-        "results":"Hello, " + context["params"].get("username")
+        "results":"Hello, " + context["params"]["username"]
     }))
 
 if __name__ == '__main__':
