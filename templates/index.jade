@@ -7,14 +7,12 @@ block twitter
   meta(name="twitter:description" content="minamorl.com")
 
 block content
-  for article in dir.slice(0, 5)
+  for article in all_articles.slice(0, 5)
     article
       h1
         a(href=article.target)= article.yaml.title
       time= article.yaml.timestamp
-      div!= get_elements_before_readmore(marked(article.yaml.__content))
-        if get_comments(marked(article.yaml.__content))
-          a(href=article.target) 続きを読む
+      div!= marked(article.yaml.__content)
 
   footer
     .articles
@@ -22,7 +20,7 @@ block content
       .google-engine
         gcse:search
       ul
-        for item in dir
+        for item in all_articles
           li 
             a(href=item.target)= item.yaml.title
             time= item.yaml.timestamp

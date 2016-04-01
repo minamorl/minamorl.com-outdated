@@ -6,10 +6,39 @@ let marked    = require('marked');
 let glob      = require("glob")
 let striptags     = require('striptags');
 let path   = require("path")
+let moment = require("moment")
+let RSS = require("rss")
 
 let DIST = "./dist/"
 
-let build = {
+const _by_timestamp = (a, b) => {
+  if (a.yaml.timestamp < b.yaml.timestamp)
+    return 1;
+  if (a.yaml.timestamp > b.yaml.timestamp)
+    return -1;
+  return 0;
+}
+
+
+const generate_feed = (articles) => {
+  let feed = new RSS({
+    title: "minamorl.com",
+    feed_url: "http://minamorl.com/feed.rss",
+    site_url: "minamorl.com",
+  })
+  
+  for (let article of articles) {
+    feed.item({
+      title: article.yaml.title,
+      description: marked(article.yaml.__content),
+      date: moment(article.yaml.timestamp),
+      url: "http://minamorl.com/" + article.filename,
+    })
+  }
+
+  return feed.xml()
+}
+const build = {
   build_articles: () => {
     mkdirp(DIST, function (err) {
       if (err) console.error(err)
@@ -17,10 +46,6 @@ let build = {
     mkdirp(DIST+"articles/", function (err) {
       if (err) console.error(err)
     });
-    let defaultLayout = {
-      layout: "templates/article.jade",
-      striptags: striptags
-    };
     glob('./articles/**/*.md', (err, matches) => {
       for (let filename of matches)
         build.build_article(filename)
@@ -54,50 +79,31 @@ let build = {
     });
 
     fs.readdir('articles', (err, markdown_filenames) => {
-      let parsed = [];
+      let all_articles = [];
       for (let filename of markdown_filenames) {
-        let yaml = yamlFront.loadFront(fs.readFileSync('articles/' + filename));
-        parsed.push({
+        const yaml = yamlFront.loadFront(fs.readFileSync('articles/' + filename));
+        all_articles.push({
           filename: filename,
           target: "articles/" + yaml.timestamp + "-" + filename.replace('.md', '.html'),
           yaml: yaml,
-        });
+        })
       }
 
-      let _by_timestamp = (a, b) => {
-        if (a.yaml.timestamp < b.yaml.timestamp)
-          return 1;
-        if (a.yaml.timestamp > b.yaml.timestamp)
-          return -1;
-        return 0;
-      }
+      all_articles.sort(_by_timestamp)
 
-      parsed.sort(_by_timestamp);
-
-      let get_comments = (str) => {
-        let readmore = /<!--\s*read\s*more\s*-->/i;
-        str.match(readmore);
-      };
-
-      let get_elements_before_readmore = (str) => {
-        let comment = get_comments(str)
-        if(comment)
-          return str.split(comment[0])[0];
-        return str;
-      };
-
-      let compiled = jade.compileFile("./templates/index.jade")(
-        {
-          dir: parsed,
-          marked: marked,
-          get_comments: get_comments,
-          get_elements_before_readmore: get_elements_before_readmore,
-        }
-      )
+      const compiled = jade.compileFile("./templates/index.jade")({
+        all_articles: all_articles,
+        marked: marked,
+      })
       fs.writeFile("./dist/index.html", compiled, function (err) {
         if (err) console.error(err)
       })
+      /* generate RSS feed */
+      fs.writeFile("./dist/feed.rss", generate_feed(all_articles.slice(0, 5)), function (err) {
+        if (err) console.error(err)
+      })
     })
+
   }
 }
 module.exports = build

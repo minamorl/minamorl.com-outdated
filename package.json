@@ -30,6 +30,8 @@
     "marked": "^0.3.4",
     "merge": "^1.2.0",
     "mkdirp": "^0.5.1",
+    "moment": "^2.12.0",
+    "rss": "^1.2.1",
     "run-sequence": "^1.1.2",
     "sass-loader": "^2.0.1",
     "striptags": "^2.1.0",
