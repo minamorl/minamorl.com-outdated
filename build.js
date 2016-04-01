@@ -32,7 +32,7 @@ const generate_feed = (articles) => {
       title: article.yaml.title,
       description: marked(article.yaml.__content),
       date: moment(article.yaml.timestamp),
-      url: "http://minamorl.com/" + article.filename,
+      url: "http://minamorl.com/" + article.target
     })
   }
 
