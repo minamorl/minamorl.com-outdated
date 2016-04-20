@@ -25,3 +25,10 @@ def plan_minamorl_article(args):
     else:
         yield shell(["gulp"], on="~/repos/minamorl.com")
 
+@plan("b")
+def plan_minamorl_article(args):
+    import string
+    import random
+    title = ''.join(random.choice(string.ascii_lowercase) for _ in range(10))
+    run(["vim", title + ".md"], on="~/repos/minamorl.com/articles", start_new_session=True)
+
