@@ -1,12 +1,12 @@
 import frontmatter
 from flask import Flask
 import glob
-from redisorm.core import PersistentData, Persistent, Column
+from redisorm import Model, Client, Column
 
 app = Flask()
-p = Persistent("minamorl.com")
+p = Client("minamorl.com")
 
-class Article(PersistentData):
+class Article(Model):
     id = Column()
     title = Column()
     title_en = Column()
@@ -24,6 +24,12 @@ def import_to_redis():
         article.title_en = f[len("articles/"):]
         p.save(article)
         
+@app.route("/articles/{article_name}.html")
+def articles_redirect(article_name):
+    
+
+
+
 def main():
     app.run(debug=True)
 
