@@ -18,14 +18,11 @@ def plan_dist(args):
     shell(["gulp", "deploy"], asynchronous=False)
     rsync()
 
-@plan("a")
+@plan("run")
 def plan_minamorl_article(args):
-    if args.args:
-        run(["vim", args.args[0] + ".md"], on="~/repos/minamorl.com/articles", start_new_session=True)
-    else:
-        yield shell(["gulp"], on="~/repos/minamorl.com")
+    yield shell(["gulp"], on="~/repos/minamorl.com")
 
-@plan("b")
+@plan("new")
 def plan_minamorl_article(args):
     import string
     import random
